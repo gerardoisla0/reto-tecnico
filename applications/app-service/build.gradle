@@ -1,0 +1,46 @@
+apply plugin: 'org.springframework.boot'
+
+dependencies {
+    testImplementation 'com.fasterxml.jackson.core:jackson-databind'
+    testImplementation 'com.tngtech.archunit:archunit:1.1.0'
+
+    // Infrastructure - Helper
+    implementation project(':validator')
+    implementation project(':jpa-h2')
+
+    // Infrastructure - Entry-Points
+    implementation project( ':reactive-web')
+
+    // Domain
+    implementation project(':model')
+    implementation project(':usecase')
+
+    implementation "org.reactivecommons.utils:object-mapper:${objectMapperVersion}"
+    implementation 'org.springframework.boot:spring-boot-starter'
+
+    implementation "org.springframework.ws:spring-ws-security:${springWsSecurityVersion}"
+    implementation 'org.springframework.security:spring-security-core'
+    implementation 'org.apache.santuario:xmlsec'
+
+    runtimeOnly('org.springframework.boot:spring-boot-devtools')
+
+    testImplementation "io.github.resilience4j:resilience4j-spring-boot2:${resilience4jVersion}"
+    testImplementation "io.github.resilience4j:resilience4j-reactor:${resilience4jVersion}"
+    testImplementation 'org.springframework.boot:spring-boot-starter-aop'
+
+}
+
+tasks.register('explodedJar', Copy) {
+    with jar
+    into "${buildDir}/exploded"
+}
+
+jar {
+    // To disable the *-plain.jar
+    enabled = false
+}
+
+bootJar {
+    // Sets output jar name
+    archiveFileName = "${project.getParent().getName()}.${archiveExtension.get()}"
+}

@@ -1,0 +1,35 @@
+
+dependencies {
+    implementation project(':usecase')
+    implementation project(':model')
+    implementation project(':validator')
+
+    implementation 'org.springframework.boot:spring-boot-starter-webflux'
+    implementation 'org.springframework:spring-webflux:5.3.31'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator:2.7.18'
+    implementation 'org.springframework.boot:spring-boot-starter:2.7.18'
+    implementation 'org.springframework.boot:spring-boot-autoconfigure:2.7.18'
+    implementation "org.springdoc:springdoc-openapi-ui:${openapiUIVersion}"
+    implementation "org.springdoc:springdoc-openapi-webflux-ui:1.8.0"
+
+    implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
+    implementation 'io.jsonwebtoken:jjwt-impl:0.11.5'
+    implementation 'io.jsonwebtoken:jjwt-orgjson:0.11.5'
+
+    runtimeOnly "org.webjars:webjars-locator-core:${locatorCoreVersion}"
+
+    implementation "org.mapstruct:mapstruct:${mapstructVersion}"
+    annotationProcessor "org.mapstruct:mapstruct-processor:${mapstructVersion}"
+
+    implementation "io.github.resilience4j:resilience4j-spring-boot2:${resilience4jVersion}"
+    implementation "io.github.resilience4j:resilience4j-reactor:${resilience4jVersion}"
+    implementation 'org.springframework.boot:spring-boot-starter-aop'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+
+    implementation "org.apache.commons:commons-lang3:${commonsLang3Version}"
+
+}
+
+repositories {
+    mavenCentral()
+}
